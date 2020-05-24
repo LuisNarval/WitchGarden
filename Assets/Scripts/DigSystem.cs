@@ -5,7 +5,6 @@ using UnityEngine;
 public class DigSystem : MonoBehaviour
 {
     [Header("REFERENCE TO SCENE")]
-    public Transform Pala;
     public Transform vLine;
     public Transform hLine;
     public GameObject snapCursor;
@@ -21,7 +20,6 @@ public class DigSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Pala.GetComponent<SpriteRenderer>().enabled = false;
         snapCursor.SetActive(false);
     }
 
@@ -31,8 +29,7 @@ public class DigSystem : MonoBehaviour
         if (isDigging)
             showDigArea();
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
+        if (Input.GetKeyDown(KeyCode.Mouse0)){
             if (isDigging)
                 dig();
         }
@@ -42,16 +39,15 @@ public class DigSystem : MonoBehaviour
     public void StartDigging()
     {
         isDigging = true;
-        Pala.GetComponent<SpriteRenderer>().enabled = true;
         snapCursor.SetActive(true);
+        CursorSystem.SetCursor(CURSORS.PALA);
     }
 
     public void StopDigging()
     {
         isDigging = false;
-        Pala.GetComponent<SpriteRenderer>().enabled = false;
         snapCursor.SetActive(false);
-        Cursor.visible = true;
+        CursorSystem.ReleaseCursor();
     }
 
 
@@ -73,18 +69,12 @@ public class DigSystem : MonoBehaviour
         snapPoint = new Vector3(snap(mPosition.x), snap(mPosition.y), 0);
         
         if (CoordenateSystem.isInArea()){
-            Pala.position = new Vector3(mPosition.x, mPosition.y, 0);
             vLine.position = new Vector3(snapPoint.x, snapPoint.y, 0);
             hLine.position = new Vector3(snapPoint.x, snapPoint.y, 0);
-            if (Cursor.visible)
-                Cursor.visible = false;
         }
         else{
-            Pala.position = new Vector3(1000, 1000, 0);
             vLine.position = new Vector3(1000, 1000, 0);
             hLine.position = new Vector3(1000, 1000, 0);
-            if (!Cursor.visible)
-                Cursor.visible = true;
         }
     }
 

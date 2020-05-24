@@ -8,14 +8,17 @@ public class CoordenateSystem : MonoBehaviour
     [Header("CONFIG")]
     public Vector2 minActionArea;
     public Vector2 maxActionArea;
-
-    public static Vector2 minArea;
-    public static Vector2 maxArea;
-
+    public bool showInfo;
 
     [Header("REFERENCE")]
+    public Canvas infoCanvas;
     public Text txt_coor;
     public Text txt_coorState;
+
+    public Text txt_MousePosition;
+    public Text txt_ScreenToViewport;
+    public Text txt_ScreenToWorld;
+
 
     static int minAreaX;
     static int minAreaY;
@@ -26,18 +29,20 @@ public class CoordenateSystem : MonoBehaviour
 
     static int coorX;
     static int coorY;
-    static Vector3 mPosition;
 
+    static Vector3 mPosition;
 
     private void Awake()
     {
-        minArea = minActionArea;
-        maxArea = maxActionArea;
+        minAreaX = (int)minActionArea.x;
+        minAreaY = (int)minActionArea.y;
+        maxAreaX = (int)maxActionArea.x;
+        maxAreaY = (int)maxActionArea.y;
 
-        minAreaX = (int)minArea.x;
-        minAreaY = (int)minArea.y;
-        maxAreaX = (int)maxArea.x;
-        maxAreaY = (int)maxArea.y;
+        if (showInfo)
+            infoCanvas.enabled = true;
+        else
+            infoCanvas.enabled = false;
     }
 
 
@@ -51,8 +56,8 @@ public class CoordenateSystem : MonoBehaviour
     void Update()
     {
         readMouse();
-        showCoorInUI();
-        Debug.Log("Hola hola");
+        if(showInfo)
+            showCoorInUI();
     }
 
 
@@ -71,9 +76,7 @@ public class CoordenateSystem : MonoBehaviour
     {
        mPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
        coorX = (int) mPosition.x;
-       coorY = (int) mPosition.y;
-
-        
+       coorY = (int) mPosition.y; 
     }
 
     void showCoorInUI()
@@ -82,7 +85,28 @@ public class CoordenateSystem : MonoBehaviour
             txt_coor.text = "(" + coorX + "," + coorY + ")";
             txt_coorState.text = coordenates[coorX, coorY].ToString();
         }
+
+        txt_MousePosition.text = Input.mousePosition.ToString();
+        txt_ScreenToViewport.text = Camera.main.ScreenToViewportPoint(Input.mousePosition).ToString();
+        txt_ScreenToWorld.text = mPosition.ToString();
     }
+
+    public static bool isInArea()
+    {
+        if (mPosition.x > minAreaX && mPosition.x < maxAreaX && mPosition.y > minAreaY && mPosition.y < maxAreaY)
+            return true;
+        else
+            return false;
+    }
+
+
+
+
+
+
+
+
+
 
 
     public static void setCoordenate()
@@ -101,13 +125,7 @@ public class CoordenateSystem : MonoBehaviour
 
 
 
-    public static bool isInArea()
-    {
-        if (mPosition.x > minAreaX && mPosition.x < maxAreaX && mPosition.y > minAreaY && mPosition.y < maxAreaY)
-            return true;
-        else
-            return false;
-    }
+    
 
 
 }
