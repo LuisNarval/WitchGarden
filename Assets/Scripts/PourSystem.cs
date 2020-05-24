@@ -16,8 +16,8 @@ public class PourSystem : MonoBehaviour
     void Start()
     {
         Regadera.GetComponent<SpriteRenderer>().enabled = false;
-        minPourArea = ActionSystem.minArea;
-        maxPourArea = ActionSystem.maxArea;
+        minPourArea = CoordenateSystem.minArea;
+        maxPourArea = CoordenateSystem.maxArea;
     }
 
     // Update is called once per frame
@@ -71,7 +71,7 @@ public class PourSystem : MonoBehaviour
     void pour()
     {
         StopPouring();
-
+        Regadera.GetComponent<Regadera>().Pour();
     }
 
 

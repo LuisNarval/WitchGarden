@@ -16,8 +16,8 @@ public class PlantSystem : MonoBehaviour
     void Start()
     {
         Semillas.GetComponent<SpriteRenderer>().enabled = false;
-        minPlantArea = ActionSystem.minArea;
-        maxPlantArea = ActionSystem.maxArea;
+        minPlantArea = CoordenateSystem.minArea;
+        maxPlantArea = CoordenateSystem.maxArea;
     }
 
     // Update is called once per frame
@@ -66,7 +66,7 @@ public class PlantSystem : MonoBehaviour
     void plant()
     {
         StopPlanting();
-
+        Semillas.GetComponent<Semillas>().PlantInLand();
     }
 
 

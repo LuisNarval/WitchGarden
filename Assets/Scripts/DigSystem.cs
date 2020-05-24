@@ -9,7 +9,7 @@ public class DigSystem : MonoBehaviour
     public Transform vLine;
     public Transform hLine;
     public GameObject snapCursor;
-    
+
     [Header("REFERENCE TO PROYECT")]
     public GameObject Plant;
 
@@ -17,16 +17,12 @@ public class DigSystem : MonoBehaviour
     Vector3 mPosition;
     bool isDigging = false;
 
-    Vector2 minDigArea;
-    Vector2 maxDigArea;
-
+    
     // Start is called before the first frame update
     void Start()
     {
         Pala.GetComponent<SpriteRenderer>().enabled = false;
         snapCursor.SetActive(false);
-        minDigArea = ActionSystem.minArea;
-        maxDigArea = ActionSystem.maxArea;
     }
 
     // Update is called once per frame
@@ -76,38 +72,30 @@ public class DigSystem : MonoBehaviour
         mPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         snapPoint = new Vector3(snap(mPosition.x), snap(mPosition.y), 0);
         
-        if (isInArea()){
+        if (CoordenateSystem.isInArea()){
             Pala.position = new Vector3(mPosition.x, mPosition.y, 0);
             vLine.position = new Vector3(snapPoint.x, snapPoint.y, 0);
             hLine.position = new Vector3(snapPoint.x, snapPoint.y, 0);
+            if (Cursor.visible)
+                Cursor.visible = false;
         }
         else{
             Pala.position = new Vector3(1000, 1000, 0);
             vLine.position = new Vector3(1000, 1000, 0);
             hLine.position = new Vector3(1000, 1000, 0);
+            if (!Cursor.visible)
+                Cursor.visible = true;
         }
     }
 
-    bool isInArea()
-    {
-        if (mPosition.x > minDigArea.x && mPosition.x < maxDigArea.x && mPosition.y > minDigArea.y && mPosition.y < maxDigArea.y){
-            if (Cursor.visible)
-                Cursor.visible = false;
-            return true;
-        }
-            
-        else{
-            if (!Cursor.visible)
-                Cursor.visible = true;
-            return false;
-        }
-            
-    }
+    
 
     void dig()
     {
-        if (isInArea())
+        if (!CoordenateSystem.isCoordenateSet()){
             Instantiate(Plant, snapPoint, Quaternion.identity);
+            CoordenateSystem.setCoordenate();
+        }
 
         StopDigging();
     }

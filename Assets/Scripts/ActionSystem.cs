@@ -3,13 +3,7 @@
 enum ACTION { DIG, PLANT, POURWATER }
 public class ActionSystem : MonoBehaviour
 {
-    [Header("CONFIG")]
-    public Vector2 minActionArea;
-    public Vector2 maxActionArea;
-
-    public static Vector2 minArea;
-    public static Vector2 maxArea;
-
+    
     [Header("REFERENCE")]
     public DigSystem digSystem;
     public PlantSystem plantSystem;
@@ -18,12 +12,7 @@ public class ActionSystem : MonoBehaviour
     [Header("QUERY")]
     ACTION currentAction;
 
-    private void Awake()
-    {
-        minArea = minActionArea;
-        maxArea = maxActionArea;
-    }
-
+    
     public void DigAction()
     {
         stopCurrentAction();
