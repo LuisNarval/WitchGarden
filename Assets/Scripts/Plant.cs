@@ -5,70 +5,104 @@ using UnityEngine.UI;
 
 public class Plant : MonoBehaviour
 {
-
-    public enum STATE{HOLE, SEED, FASE1, FASE2, MATURE}
-
     [Header("CONFIG")]
     public float minRangeToGrowUp;
     public float maxRangeToGrowUp;
 
-
-    [Header("REFERENCE")]
+    [Header("REFERENCE TO SCENE")]
+    public SpriteRenderer spriteRenderer;
     public Material normalMaterial;
     public Material rightMaterial;
     public Material wrongMaterial;
-
     public Canvas canvas;
     public Image fillBar;
 
+    [Header("REFERENCE TO PROYECT")]
     public Sprite[] spriteArray;
 
     [Header("QUERY")]
-    public STATE state;
     public float timeToGrowUp;
     public float time;
+    public Vector2 gridPos;
     
-        SpriteRenderer spriteRenderer;
-    // Start is called before the first frame update
-    void Start()
-    {
-        canvas.enabled = false;
-        spriteRenderer = this.GetComponent<SpriteRenderer>();
-        state = STATE.HOLE;
-        setNormalColor();
-        
+   
+    void Start(){
         timeToGrowUp = Random.Range(minRangeToGrowUp, maxRangeToGrowUp);
+        setNormalColor();
+        canvas.enabled = false;
     }
 
-    public void setRightColor()
+
+    bool isOutlined;
+
+    public void unSetOutline(){
+        if (isOutlined)
+            setNormalColor();
+    }
+
+    public void setOutline()
     {
+        switch (ActionSystem.currentAction)
+        {
+            case ACTION.NONE:
+                break;
+
+            case ACTION.DIGHOLE:
+                if (getState() == STATE.PLOW)   setRightColor();
+                else                            setWrongColor();
+            break;
+
+            case ACTION.PLANTSEED:
+                if (getState() == STATE.HOLE)   setRightColor();
+                else                            setWrongColor();
+            break;
+            
+            case ACTION.POURWATER:
+                if (getState() == STATE.SEED)   setRightColor();
+                else                            setWrongColor();
+            break;
+
+            case ACTION.CUTPLANT:
+                if (getState() == STATE.MATURE) setRightColor();
+                else setWrongColor();
+            break;
+        }
+    }
+
+    public void setRightColor(){
         spriteRenderer.material = rightMaterial;
+        isOutlined = true;
     }
-
-    public void setWrongColor()
-    {
+    public void setWrongColor(){
         spriteRenderer.material = wrongMaterial;
+        isOutlined = true;
     }
-
-    public void setNormalColor()
-    {
+    public void setNormalColor(){
         spriteRenderer.material = normalMaterial;
+        isOutlined = false;
+    }
+
+    public void setPosicion(float x, float y){
+        gridPos = new Vector2(x,y);
     }
 
 
-    public void PlantInLand()
+
+    public void holeInLand()
     {
-        state = STATE.SEED;
-        spriteRenderer.sprite = spriteArray[(int)state];
+        updateState(STATE.HOLE);
     }
 
-    public void PourWater()
+    public void seedsInLand()
     {
+        updateState(STATE.SEED);
+    }
 
-        Debug.Log("POUR WATER Pre Coroutine");
-
+    public void pourWater()
+    {
         StartCoroutine(coroutine_GrowUp());
     }
+
 
 
     IEnumerator coroutine_GrowUp()
@@ -76,23 +110,23 @@ public class Plant : MonoBehaviour
         time = 0;
         canvas.enabled = true;
 
+        FarmSystem.SetState(gridPos, STATE.FASE1);
+
         while (time<timeToGrowUp/3){
             time += Time.deltaTime;
             fillBar.fillAmount = time / timeToGrowUp;
             yield return new WaitForEndOfFrame();
         }
-        state = STATE.FASE1;
-        spriteRenderer.sprite = spriteArray[(int)state];
 
+        updateState(STATE.FASE1);
 
         while (time < (timeToGrowUp / 3) *2 ){
             time += Time.deltaTime;
             fillBar.fillAmount = time / timeToGrowUp;
             yield return new WaitForEndOfFrame();
         }
-        state = STATE.FASE2;
-        spriteRenderer.sprite = spriteArray[(int)state];
 
+        updateState(STATE.FASE2);
 
         while (time < timeToGrowUp){
             time += Time.deltaTime;
@@ -100,10 +134,29 @@ public class Plant : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        state = STATE.MATURE;
-        spriteRenderer.sprite = spriteArray[(int)state];
+        updateState(STATE.MATURE);
 
         canvas.enabled = false;
     }
 
+
+    public void cutPlant()
+    {
+        updateState(STATE.PLOW);
+    }
+
+
+
+
+
+    void updateState(STATE state)
+    {
+        FarmSystem.SetState(gridPos, state);
+        spriteRenderer.sprite = spriteArray[(int)FarmSystem.GetState(gridPos)];
+    }
+
+    STATE getState()
+    {
+        return FarmSystem.GetState(gridPos);
+    }
 }

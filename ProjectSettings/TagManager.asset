@@ -50,6 +50,9 @@ TagManager:
   - name: SnapCursor
     uniqueID: 1286895603
     locked: 0
+  - name: Familiares
+    uniqueID: 3779603427
+    locked: 0
   - name: Plantas
     uniqueID: 743415891
     locked: 0

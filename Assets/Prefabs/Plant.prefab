@@ -10,9 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 594983949098033830}
   - component: {fileID: 594983949098033833}
-  - component: {fileID: 1997794820}
   - component: {fileID: 1997794816}
-  - component: {fileID: 2834282994638349257}
   m_Layer: 0
   m_Name: Plant
   m_TagString: Plant
@@ -74,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 743415891
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 84a51f9eaef60cd4ea08c0cadb215ac3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 315574e4d6563f047b9558b5fed6d32f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -85,27 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &1997794820
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 594983949098033832}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &1997794816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,39 +103,17 @@ MonoBehaviour:
   canvas: {fileID: 830444617528861094}
   fillBar: {fileID: 732194389967202840}
   spriteArray:
-  - {fileID: 21300000, guid: 84a51f9eaef60cd4ea08c0cadb215ac3, type: 3}
-  - {fileID: 21300000, guid: 2c8b8bb79fb95f2409d5be18a4e77123, type: 3}
-  - {fileID: 21300000, guid: 6b505faebfa21074a9778130d0761de9, type: 3}
-  - {fileID: 21300000, guid: 89a0092b4ea9d04479fdea55c34f2a27, type: 3}
-  - {fileID: 21300000, guid: 53eec2f22f250344db920beafe7a7838, type: 3}
-  state: 0
+  - {fileID: 21300000, guid: a1f8df3abcd62134a9d24b3f36fa7c61, type: 3}
+  - {fileID: 21300000, guid: 315574e4d6563f047b9558b5fed6d32f, type: 3}
+  - {fileID: 21300000, guid: d167c023f9c78c540ba5ee3294e4e417, type: 3}
+  - {fileID: 21300000, guid: 1319fe1fdbd670244a34b1ff0804d93a, type: 3}
+  - {fileID: 21300000, guid: 657dc0e09acfc1f4eab4c0119ca570d1, type: 3}
+  - {fileID: 21300000, guid: c86fa41857208fd449cdad2ccc2af6b5, type: 3}
+  - {fileID: 21300000, guid: d6b79d8e374dcbb429e7b22b70363ca9, type: 3}
   timeToGrowUp: 0
---- !u!61 &2834282994638349257
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 594983949098033832}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.002637148, y: -0.002637267}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.81539583, y: 0.3828938}
-  m_EdgeRadius: 0
+  time: 0
+  gridPos: {x: 0, y: 0}
+  spriteRenderer: {fileID: 594983949098033833}
 --- !u!1 &2070484135736291637
 GameObject:
   m_ObjectHideFlags: 0
