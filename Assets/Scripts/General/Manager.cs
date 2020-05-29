@@ -11,6 +11,7 @@ public class Manager : MonoBehaviour
     public bool gameEndIfIsGoalAchived;
 
     [Header("REFERENCE")]
+    public SceneSystem sceneSystem;
     public OrderSystem orderSystem;
     public TimeSystem timeSystem;
     public DialogueSystem dialogueSystem;
@@ -38,10 +39,9 @@ public class Manager : MonoBehaviour
     IEnumerator coroutineStartDialogue()
     {
         dialogueCanvas.enabled = true;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(3.5f);
         dialogueCanvas.enabled = true;
         animBackground.SetTrigger("enter");
-        yield return new WaitForSeconds(2.0f);
         dialogueSystem.readDialogue(0);
     }
 
@@ -159,7 +159,10 @@ public class Manager : MonoBehaviour
 
 
     void ChangeLevel(){
-        Debug.Log("Final del juego.");
+        if (isLevelPassed)
+            sceneSystem.nextScene();
+        else
+            sceneSystem.reloadScene();
     }
 
 
