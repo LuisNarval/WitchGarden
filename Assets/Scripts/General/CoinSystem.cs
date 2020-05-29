@@ -5,28 +5,22 @@ using UnityEngine.UI;
 using TMPro;
 public class CoinSystem : MonoBehaviour
 {
-    [Header("CONFIG")]
-    public int CoinsGoal;
-
     [Header("REFERENCE")]
+    public Manager manager;
+
     public Transform arrowTrans;
     public Image fillImage;
     public TextMeshProUGUI txtCoinCount;
 
     [Header("QUERY")]
-    public static int currentCoins;
-
-    static int staticCG;
-    static Transform staticArrowTrans;
-    static Image staticFillImage;
-    static TextMeshProUGUI staticTxtCoinCount;
+    public int currentCoins;
+    public int coinsGoal;
+    public bool goalFinished;
 
     void Start()
     {
-        staticCG = CoinsGoal;
-        staticArrowTrans = arrowTrans;
-        staticFillImage = fillImage;
-        staticTxtCoinCount = txtCoinCount;
+        goalFinished = false;
+        coinsGoal = manager.Goal;
         initCount();   
     }
 
@@ -35,19 +29,24 @@ public class CoinSystem : MonoBehaviour
         currentCoins = 0;
         updateUI();
     }
-    
-    public static void addCoins(int add)
+
+    public void addCoins(int add)
     {
         currentCoins += add;
-        Debug.Log(currentCoins.ToString());
         updateUI();
+
+        if (currentCoins >= coinsGoal && !goalFinished){
+            goalFinished = true;
+            manager.goalAchived();
+        }
     }
 
-    static void updateUI()
+    void updateUI()
     {
-        staticTxtCoinCount.text = currentCoins.ToString();
-        staticFillImage.fillAmount = (float) currentCoins / staticCG;
-        staticArrowTrans.localPosition = new Vector3( staticFillImage.fillAmount * 620.0f-310.0f, staticArrowTrans.localPosition.y, staticArrowTrans.localPosition.z);
+        txtCoinCount.text = currentCoins.ToString();
+        fillImage.fillAmount = (float) currentCoins / coinsGoal;
+        arrowTrans.localPosition = new Vector3( fillImage.fillAmount * 620.0f-310.0f, arrowTrans.localPosition.y, arrowTrans.localPosition.z);
     }
+
 
 }

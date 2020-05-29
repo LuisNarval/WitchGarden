@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class TimeSystem : MonoBehaviour
 {
-    [Header("CONFIG")]
-    public int Segundos;
     [Header("REFERENCE")]
+    public Manager manager;
     public Text txt_Timer;
 
     public static int time;
@@ -15,8 +14,7 @@ public class TimeSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        time = Segundos;
-        StartTime();
+        time = manager.Seconds;
     }
 
     public void StartTime()
@@ -26,7 +24,7 @@ public class TimeSystem : MonoBehaviour
 
     IEnumerator coroutineCountDown()
     {
-        time = Segundos;
+        time = manager.Seconds;
         int segundero;
         int minutero;
 
@@ -59,7 +57,14 @@ public class TimeSystem : MonoBehaviour
 
     void TimesUp()
     {
-        Debug.Log("Se termino el tiempo"); 
+        manager.timesUp();
     }
+
+
+    public void StopTime()
+    {
+        StopAllCoroutines();
+    }
+
 
 }

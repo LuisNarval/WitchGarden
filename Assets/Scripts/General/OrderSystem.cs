@@ -33,11 +33,10 @@ public class OrderSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start(){
         initOrders();
-        StartCoroutine(coroutineSendOrders());   
     }
 
 
-    void initOrders()
+    public void initOrders()
     {
         orders = new OrdersTemplate[6];
         isOccupied = new bool[6];
@@ -46,7 +45,11 @@ public class OrderSystem : MonoBehaviour
             orders[i].basket = baskets[i];
             orders[i].wasSend = false;
         }
+    }
 
+    public void sendOrders(){
+        StopAllCoroutines();
+        StartCoroutine(coroutineSendOrders());
     }
 
 
@@ -63,13 +66,19 @@ public class OrderSystem : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(minTimeBetweenOrders,maxTimeBetweenOrders));
         }
 
+        storeAllOrders();
+    }
 
-        for (int i = 0; i < orders.Length; i++) {
+
+    public void storeAllOrders()
+    {
+        StopAllCoroutines();
+        for (int i = 0; i < orders.Length; i++){
             if (orders[i].wasSend)
                 orders[i].basket.fullBasket();
         }
-
     }
+
 
 
     void sendNewOrder(){

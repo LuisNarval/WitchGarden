@@ -8,6 +8,7 @@ public class Basket : MonoBehaviour
 {
     [Header("CONFIG")]
     public int maxPlantNumber;
+    public CoinSystem coinSystem;
 
     [Header("REFERENCE")]
     public Animator animator;
@@ -75,8 +76,7 @@ public class Basket : MonoBehaviour
         palomita.enabled = true;
         txtPlantNumber.enabled = false;
         animator.SetTrigger("exit");
-
-        CoinSystem.addCoins(plantActive);
+        coinSystem.addCoins(plantActive);
         Invoke("informOrderSystem", 1f);
     }
 
