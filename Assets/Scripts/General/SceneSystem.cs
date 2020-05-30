@@ -33,7 +33,7 @@ public class SceneSystem : MonoBehaviour
         imgCurtain.sprite = enterSprite;
         animCurtain.SetTrigger("enter");
         animCurtain.speed=enterSpeed;
-        Invoke("disableCurtain", 4.0f);
+        Invoke("disableCurtain", 1.5f/enterSpeed);
     }
 
     void disableCurtain()
@@ -44,15 +44,22 @@ public class SceneSystem : MonoBehaviour
 
     public void nextScene()
     {
-        aOp = SceneManager.LoadSceneAsync(nextSceneName);
+        aOp = SceneManager.LoadSceneAsync("LoadScreen");
+        PlayerPrefs.SetString("NEXTSCENE", nextSceneName);
         aOp.allowSceneActivation = false;
         closeCurtain();
     }
 
-
-
     public void reloadScene(){
-        aOp = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        aOp = SceneManager.LoadSceneAsync("LoadScreen");
+        PlayerPrefs.SetString("NEXTSCENE", SceneManager.GetActiveScene().name);
+        aOp.allowSceneActivation = false;
+        closeCurtain();
+    }
+
+    public void goBackToTitle(){
+        aOp = SceneManager.LoadSceneAsync("LoadScreen");
+        PlayerPrefs.SetString("NEXTSCENE", SceneManager.GetSceneByBuildIndex(0).name);
         aOp.allowSceneActivation = false;
         closeCurtain();
     }
@@ -65,7 +72,7 @@ public class SceneSystem : MonoBehaviour
         curtainCanvas.enabled = true;
         animCurtain.SetTrigger("exit");
         animCurtain.speed = exitSpeed;
-        Invoke("goToNextScene", 4.0f);
+        Invoke("goToNextScene", 1.5f / exitSpeed);
     }
 
     void goToNextScene()

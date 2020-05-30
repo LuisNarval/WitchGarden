@@ -14,6 +14,7 @@ public class Manager : MonoBehaviour
     public SceneSystem sceneSystem;
     public OrderSystem orderSystem;
     public TimeSystem timeSystem;
+    public ResultSystem resultSystem;
     public DialogueSystem dialogueSystem;
 
     public Canvas dialogueCanvas;
@@ -39,7 +40,7 @@ public class Manager : MonoBehaviour
     IEnumerator coroutineStartDialogue()
     {
         dialogueCanvas.enabled = true;
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(1.5f /sceneSystem.enterSpeed);
         dialogueCanvas.enabled = true;
         animBackground.SetTrigger("enter");
         dialogueSystem.readDialogue(0);
@@ -53,7 +54,7 @@ public class Manager : MonoBehaviour
             StartCoroutine(coroutinePrepare());
         }
         else
-            ChangeLevel();
+            showResults();
     }
 
 
@@ -158,11 +159,8 @@ public class Manager : MonoBehaviour
     }
 
 
-    void ChangeLevel(){
-        if (isLevelPassed)
-            sceneSystem.nextScene();
-        else
-            sceneSystem.reloadScene();
+    void showResults(){
+        resultSystem.showResults();
     }
 
 

@@ -52,7 +52,11 @@ public class DialogueSystem : MonoBehaviour
         sentences = new Queue<string>();
         DialogueCanvas.enabled = true;
         animWitch.SetBool("isLeft", true);
+        animClient.SetBool("isLeft", true);
         animGirl.SetBool("isRight", true);
+        isWitchInScene = false;
+        isGirlInScene = false;
+        isClientInScene = false;
     }
 
    
@@ -91,39 +95,78 @@ public class DialogueSystem : MonoBehaviour
             sentences.Enqueue(newSentence);
         }
 
-        if(currentDialogue.dialogue[currentIntervention].chatSide == CHATSIDE.LEFT)
-            StartCoroutine(coroutine_PrepareLeft());
-        else
+        if (currentDialogue.dialogue[currentIntervention].charactherType == CHARACTERTYPE.GIRL)
             StartCoroutine(coroutine_PrepareRight());
+        else
+            StartCoroutine(coroutine_PrepareLeft());
     }
 
 
     IEnumerator coroutine_PrepareLeft()
     {
-        if(isWitchInScene||isGirlInScene)
-            yield return StartCoroutine(coroutine_chatBoxOff());
 
-        if (!isWitchInScene){
-            animWitch.SetTrigger("enter");
-            yield return new WaitForSeconds(1.5f);
 
-            isWitchInScene = true;
+        if(currentDialogue.dialogue[currentIntervention].charactherType == CHARACTERTYPE.WITCH){
+
+            if (isClientInScene){
+                animClient.SetTrigger("exit");
+                animClient.speed = 2.0f;
+                yield return StartCoroutine(coroutine_chatBoxOff());
+                isClientInScene = false;
+                animClient.speed = 1.0f;
+                animWitch.speed = 2.0f;
+            }
+
+            if (isWitchInScene){
+                yield return StartCoroutine(coroutine_chatBoxOff());
+            }else{
+                animWitch.SetTrigger("enter");
+                yield return new WaitForSeconds(1/animWitch.speed);
+                isWitchInScene = true;
+            }
+
+            yield return StartCoroutine(coroutine_chatBoxOn(witchTextColor, imgLeftBox));
+
+        }
+        else if(currentDialogue.dialogue[currentIntervention].charactherType == CHARACTERTYPE.CLIENT){
+
+            if (isWitchInScene){
+                animWitch.SetTrigger("exit");
+                animWitch.speed = 2.0f;
+                yield return StartCoroutine(coroutine_chatBoxOff());
+                isWitchInScene = false;
+                animWitch.speed = 1.0f;
+                animClient.speed = 2.0f;
+            }
+
+            if (isClientInScene){
+                yield return StartCoroutine(coroutine_chatBoxOff());
+            }else{
+                animClient.SetTrigger("enter");
+                yield return new WaitForSeconds(1/animClient.speed);
+                isClientInScene = true;
+            }
+
+            yield return StartCoroutine(coroutine_chatBoxOn(clientTextColor, imgLeftBox));
         }
 
-        yield return StartCoroutine(coroutine_chatBoxOn(witchTextColor, imgLeftBox));
         canNext = true;
         Next();
     }
 
 
     IEnumerator coroutine_PrepareRight(){
-        if (isWitchInScene || isGirlInScene)
-            yield return StartCoroutine(coroutine_chatBoxOff());
 
-        if (!isGirlInScene){
+        if (isGirlInScene){
+            yield return StartCoroutine(coroutine_chatBoxOff());
+        }
+        else{
+
+            if (isWitchInScene || isClientInScene)
+                yield return StartCoroutine(coroutine_chatBoxOff());
+
             animGirl.SetTrigger("enter");
             yield return new WaitForSeconds(1.5f);
-
             isGirlInScene = true;
         }
 
@@ -201,9 +244,20 @@ public class DialogueSystem : MonoBehaviour
 
     public void hideDialogueCharacters(){
         isGirlInScene = false;
-        isWitchInScene = false;
         animGirl.SetTrigger("exit");
-        animWitch.SetTrigger("exit");
+        animGirl.speed = 1.0f;
+
+        if (isWitchInScene){
+            animWitch.SetTrigger("exit");
+            animWitch.speed = 1.0f;
+            isWitchInScene = false;
+        }
+
+        if (isClientInScene){
+            animClient.SetTrigger("exit");
+            animClient.speed = 1.0f;
+            isClientInScene = false;
+        }
     }
 
 

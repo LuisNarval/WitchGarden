@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum CHATSIDE {LEFT, RIGHT}
+public enum CHARACTERTYPE { GIRL, WITCH, CLIENT }
 
 [System.Serializable]
 public class chat
 {
     public string name;
-    public CHATSIDE chatSide;
+    public CHARACTERTYPE charactherType;
 
     [TextArea(3, 10)]
     public string[] sentence;
