@@ -240,6 +240,7 @@ public class DialogueSystem : MonoBehaviour
         sentences.Clear();
         StartCoroutine(coroutine_chatBoxOff());
         manager.dialogueFinished();
+        hideDialogueCharacters();
     }
 
     public void hideDialogueCharacters(){

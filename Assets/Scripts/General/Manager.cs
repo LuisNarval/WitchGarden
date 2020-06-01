@@ -14,6 +14,7 @@ public class Manager : MonoBehaviour
     public SceneSystem sceneSystem;
     public OrderSystem orderSystem;
     public TimeSystem timeSystem;
+    public CoinSystem coinSystem;
     public ResultSystem resultSystem;
     public DialogueSystem dialogueSystem;
 
@@ -49,10 +50,8 @@ public class Manager : MonoBehaviour
    
     public void dialogueFinished()
     {
-        if (!isGameOver){
-            dialogueSystem.hideDialogueCharacters();
+        if (!isGameOver)
             StartCoroutine(coroutinePrepare());
-        }
         else
             showResults();
     }
@@ -160,7 +159,18 @@ public class Manager : MonoBehaviour
 
 
     void showResults(){
-        resultSystem.showResults();
+
+        if (isLevelPassed){
+            if (gameEndIfIsGoalAchived){
+                resultSystem.victoryResult(timeSystem.txt_Timer.text, "TIEMPO");
+            }else{
+                resultSystem.victoryResult(coinSystem.currentCoins.ToString(), "PUNTOS");
+            }
+        }
+        else{
+            resultSystem.defeatResult();
+        }
+
     }
 
 
