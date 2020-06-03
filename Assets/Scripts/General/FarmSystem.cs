@@ -130,6 +130,7 @@ public class FarmSystem : MonoBehaviour
 
             if(GRID[coorX, coorY].state == STATE.EMPTY){
                 GameObject instance = Instantiate(PlantPrefab, holePosition, Quaternion.identity) as GameObject;
+                instance.GetComponent<SpriteRenderer>().sortingOrder = 6 - coorY;
                 GRID[coorX, coorY].plant = instance.GetComponent<Plant>();
                 GRID[coorX, coorY].plant.setPosicion(coorX, coorY);
                 GRID[coorX, coorY].plant.holeInLand();
@@ -143,13 +144,13 @@ public class FarmSystem : MonoBehaviour
         }
     }
 
-    public static void plantSeeds()
+    public static void plantSeeds(Kind seedKind)
     {
         if(isInFarmArea() && GRID[coorX, coorY].state != STATE.EMPTY)
             GRID[coorX, coorY].plant.unSetOutline();
         
         if (isInFarmArea() && GRID[coorX, coorY].state == STATE.HOLE)
-            GRID[coorX, coorY].plant.seedsInLand();
+            GRID[coorX, coorY].plant.seedsInLand(seedKind);
     }
 
 

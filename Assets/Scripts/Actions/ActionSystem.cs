@@ -21,10 +21,10 @@ public class ActionSystem : MonoBehaviour
         currentAction = ACTION.DIGHOLE;
     }
 
-    public void PlantAction()
+    public void PlantAction(int seedType)
     {
         stopCurrentAction();
-        plantSystem.StartPlanting();
+        plantSystem.StartPlanting((PLANTKIND)seedType);
         currentAction = ACTION.PLANTSEED;
     }
 

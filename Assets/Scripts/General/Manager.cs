@@ -6,6 +6,7 @@ using TMPro;
 public class Manager : MonoBehaviour
 {
     [Header("CONFIG")]
+    public bool testMode;
     public int Seconds;
     public int Goal;
     public bool gameEndIfIsGoalAchived;
@@ -34,7 +35,10 @@ public class Manager : MonoBehaviour
         animPrepare.enabled = false;
         prepareCanvas.enabled = false;
 
-        StartCoroutine(coroutineStartDialogue());
+        if (testMode)
+            begginGame();
+        else
+            StartCoroutine(coroutineStartDialogue());
     }
 
 

@@ -70,7 +70,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 743415891
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 315574e4d6563f047b9558b5fed6d32f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -97,11 +97,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minRangeToGrowUp: 10
   maxRangeToGrowUp: 20
+  kind: {fileID: 11400000, guid: 29705171d9238ef498b18d3ad9f0b097, type: 2}
+  spriteRenderer: {fileID: 594983949098033833}
   normalMaterial: {fileID: 2100000, guid: 54dbcb8a3f1eab244b680b2cb9e1ef52, type: 2}
   rightMaterial: {fileID: 2100000, guid: 314df2891fc06384baf455e21187c401, type: 2}
   wrongMaterial: {fileID: 2100000, guid: e5431e954452670408b7755270d60490, type: 2}
   canvas: {fileID: 830444617528861094}
   fillBar: {fileID: 732194389967202840}
+  timeToGrowUp: 0
+  time: 0
+  gridPos: {x: 0, y: 0}
   spriteArray:
   - {fileID: 21300000, guid: a1f8df3abcd62134a9d24b3f36fa7c61, type: 3}
   - {fileID: 21300000, guid: 315574e4d6563f047b9558b5fed6d32f, type: 3}
@@ -110,10 +115,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 657dc0e09acfc1f4eab4c0119ca570d1, type: 3}
   - {fileID: 21300000, guid: c86fa41857208fd449cdad2ccc2af6b5, type: 3}
   - {fileID: 21300000, guid: d6b79d8e374dcbb429e7b22b70363ca9, type: 3}
-  timeToGrowUp: 0
-  time: 0
-  gridPos: {x: 0, y: 0}
-  spriteRenderer: {fileID: 594983949098033833}
 --- !u!1 &2070484135736291637
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +174,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 743415891
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &8001580969166482800
 MonoBehaviour:

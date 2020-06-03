@@ -8,6 +8,7 @@ public class Plant : MonoBehaviour
     [Header("CONFIG")]
     public float minRangeToGrowUp;
     public float maxRangeToGrowUp;
+    public Kind kind;
 
     [Header("REFERENCE TO SCENE")]
     public SpriteRenderer spriteRenderer;
@@ -17,24 +18,31 @@ public class Plant : MonoBehaviour
     public Canvas canvas;
     public Image fillBar;
 
-    [Header("REFERENCE TO PROYECT")]
-    public Sprite[] spriteArray;
-
     [Header("QUERY")]
     public float timeToGrowUp;
     public float time;
     public Vector2 gridPos;
-    
-   
+    public Sprite[] spriteArray;
+
+    bool isOutlined;
+
     void Start(){
         timeToGrowUp = Random.Range(minRangeToGrowUp, maxRangeToGrowUp);
         setNormalColor();
         canvas.enabled = false;
+        updateKind(kind);
     }
 
 
-    bool isOutlined;
+    void updateKind(Kind newkKind)
+    {
+        kind = newkKind;
+        spriteArray = kind.sprites;
+    }
 
+
+    
+    
     public void unSetOutline(){
         if (isOutlined)
             setNormalColor();
@@ -93,8 +101,9 @@ public class Plant : MonoBehaviour
         updateState(STATE.HOLE);
     }
 
-    public void seedsInLand()
+    public void seedsInLand(Kind newKind)
     {
+        updateKind(newKind);
         updateState(STATE.SEED);
     }
 

@@ -52,7 +52,7 @@ public class CursorSystem : MonoBehaviour
     void followMouse()
     {
         Vector3 viewPosition = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-        cursorTrans.position = new Vector3(viewPosition.x*screenWidth,viewPosition.y*screenHeight,0); 
+        cursorTrans.position = new Vector3(viewPosition.x* Screen.width, viewPosition.y* Screen.height, 0); 
     }
 
     static bool inAreaState;

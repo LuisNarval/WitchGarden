@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d676880e795a4e4eb45a2f45f4f83f9, type: 3}
+  m_Name: Belladona
+  m_EditorClassIdentifier: 
+  name: Belladona
+  description: Planta para dormir
+  sprites:
+  - {fileID: 21300000, guid: a1f8df3abcd62134a9d24b3f36fa7c61, type: 3}
+  - {fileID: 21300000, guid: 315574e4d6563f047b9558b5fed6d32f, type: 3}
+  - {fileID: 21300000, guid: d167c023f9c78c540ba5ee3294e4e417, type: 3}
+  - {fileID: 21300000, guid: 1319fe1fdbd670244a34b1ff0804d93a, type: 3}
+  - {fileID: 21300000, guid: 657dc0e09acfc1f4eab4c0119ca570d1, type: 3}
+  - {fileID: 21300000, guid: c86fa41857208fd449cdad2ccc2af6b5, type: 3}
+  - {fileID: 21300000, guid: 29bc05f80b304d140b99509cdf43d82f, type: 3}

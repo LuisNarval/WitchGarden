@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/LoadScreen.unity
     guid: b1d351e4afb480648b55ded43c43c13a
   - enabled: 1
-    path: Assets/Scenes/Tests/Main.unity
-    guid: 12d05fd145fd0594b813cc8c893bd024
+    path: Assets/Scenes/Level1.unity
+    guid: 9718332ee6abfa844afca7eb8bb6f434
   - enabled: 1
     path: Assets/Scenes/Level2.unity
     guid: 9e924f8657bb4504886e0102b183f760
