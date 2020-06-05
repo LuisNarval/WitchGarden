@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Stronium
   m_EditorClassIdentifier: 
   name: Stronium
+  species: 5
   description: Planta carnivora con apariencia de Orquidea
+  plantCursor: {fileID: 21300000, guid: 98aecb2baf004a14ab3e8e489761b0b9, type: 3}
   sprites:
   - {fileID: 21300000, guid: a1f8df3abcd62134a9d24b3f36fa7c61, type: 3}
   - {fileID: 21300000, guid: 315574e4d6563f047b9558b5fed6d32f, type: 3}

@@ -10,6 +10,10 @@ public class Plant : MonoBehaviour
     public float maxRangeToGrowUp;
     public Kind kind;
 
+    [Header("REFERENCE TO ITSELF")]
+    public GameObject Sign;
+    public SpriteRenderer signIcon;
+
     [Header("REFERENCE TO SCENE")]
     public SpriteRenderer spriteRenderer;
     public Material normalMaterial;
@@ -38,6 +42,7 @@ public class Plant : MonoBehaviour
     {
         kind = newkKind;
         spriteArray = kind.sprites;
+        signIcon.sprite = kind.plantCursor;
     }
 
 
@@ -98,17 +103,20 @@ public class Plant : MonoBehaviour
 
     public void holeInLand()
     {
+        AudioSystem.playDig();
         updateState(STATE.HOLE);
     }
 
     public void seedsInLand(Kind newKind)
     {
+        AudioSystem.playSeeds();
         updateKind(newKind);
         updateState(STATE.SEED);
     }
 
     public void pourWater()
     {
+        AudioSystem.playPour();
         StartCoroutine(coroutine_GrowUp());
     }
 
@@ -145,12 +153,14 @@ public class Plant : MonoBehaviour
 
         updateState(STATE.MATURE);
 
+        AudioSystem.playGrow();
         canvas.enabled = false;
     }
 
 
     public void cutPlant()
     {
+        AudioSystem.playCut();
         updateState(STATE.PLOW);
     }
 
@@ -162,6 +172,11 @@ public class Plant : MonoBehaviour
     {
         FarmSystem.SetState(gridPos, state);
         spriteRenderer.sprite = spriteArray[(int)FarmSystem.GetState(gridPos)];
+        
+        if (state == STATE.PLOW || state == STATE.HOLE || state == STATE.MATURE)
+            Sign.SetActive(false);
+        if (state == STATE.SEED)
+            Sign.SetActive(true);
     }
 
     STATE getState()

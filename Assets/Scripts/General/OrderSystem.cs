@@ -6,15 +6,38 @@ using UnityEngine.UI;
 public class OrderSystem : MonoBehaviour
 {
 
+    [Header("Flux")]
     [Header("CONFIG")]
     public int maxSimultaneousOrders;
     public int minTimeBetweenOrders;
     public int maxTimeBetweenOrders;
     public int maxPlantPerBasket;
 
+    [Header("Species to Use")]
+    public bool Belladona;
+    public bool DragonMouth;
+    public bool Lavanda;
+    public bool Mandragora;
+    public bool Orkiller;
+    public bool Stronium;
+
+
     [Header("REFERENCE")]
     public Basket[] baskets;
     public RectTransform[] positions;
+
+
+    [Header("REFERENCE TO PROYECT")]
+    public Kind kBelladona;
+    public Kind kDragonMouth;
+    public Kind kLavanda;
+    public Kind kMandragora;
+    public Kind kOrkiller;
+    public Kind kStronium;
+
+
+    [Header("QUERY")]
+    public List<Kind> kindList;
 
 
     static int currentOrders;
@@ -32,7 +55,20 @@ public class OrderSystem : MonoBehaviour
 
     // Start is called before the first frame update
     void Start(){
+        initList();
         initOrders();
+    }
+
+
+    void initList()
+    {
+        kindList = new List<Kind>();
+        if (Belladona)   kindList.Add(kBelladona);
+        if (DragonMouth) kindList.Add(kDragonMouth);
+        if (Lavanda)     kindList.Add(kLavanda);
+        if (Mandragora)  kindList.Add(kMandragora);
+        if (Orkiller)    kindList.Add(kOrkiller);
+        if (Stronium)    kindList.Add(kStronium);
     }
 
 
@@ -85,6 +121,7 @@ public class OrderSystem : MonoBehaviour
 
         int randomSlot;
         int randomBasket;
+        int randomKind;
 
         do{
             randomSlot = (int)Random.Range(0.0f, 6.0f);
@@ -103,7 +140,9 @@ public class OrderSystem : MonoBehaviour
         rT.position= positions[randomSlot].position;
 
 
-        orders[randomBasket].basket.sendBasket(maxPlantPerBasket, randomSlot, randomBasket);
+        randomKind = (int)Random.Range(0.0f, kindList.Count);
+
+        orders[randomBasket].basket.sendBasket(maxPlantPerBasket, randomSlot, randomBasket, kindList[randomKind]);
     }
 
 

@@ -10,7 +10,6 @@ public class FarmSystem : MonoBehaviour
     public Vector2 minActionArea;
     public Vector2 maxActionArea;
 
-
     [Header("REFERENCE TO PROYECT")]
     public GameObject Plant;
     public ActionSystem actionSystem;
@@ -150,7 +149,7 @@ public class FarmSystem : MonoBehaviour
             GRID[coorX, coorY].plant.unSetOutline();
         
         if (isInFarmArea() && GRID[coorX, coorY].state == STATE.HOLE)
-            GRID[coorX, coorY].plant.seedsInLand(seedKind);
+            GRID[coorX, coorY].plant.seedsInLand(seedKind);      
     }
 
 
@@ -161,6 +160,7 @@ public class FarmSystem : MonoBehaviour
 
         if (isInFarmArea() && GRID[coorX, coorY].state == STATE.SEED)
             GRID[coorX, coorY].plant.pourWater();
+            
     }
 
 
@@ -174,6 +174,7 @@ public class FarmSystem : MonoBehaviour
         if (isInFarmArea() && GRID[coorX, coorY].state == STATE.MATURE){
             GRID[coorX, coorY].plant.cutPlant();
             staticActionSystem.PlantInHand();
+            CursorSystem.SetPlantCursor(GRID[coorX, coorY].plant.kind);
         }
     }
 

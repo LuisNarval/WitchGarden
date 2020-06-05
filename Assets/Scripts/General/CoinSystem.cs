@@ -34,6 +34,7 @@ public class CoinSystem : MonoBehaviour
     {
         currentCoins += add;
         updateUI();
+        AudioSystem.playCoin();
 
         if (currentCoins >= coinsGoal && !goalFinished){
             goalFinished = true;

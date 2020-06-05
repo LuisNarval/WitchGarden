@@ -24,7 +24,7 @@ public class ActionSystem : MonoBehaviour
     public void PlantAction(int seedType)
     {
         stopCurrentAction();
-        plantSystem.StartPlanting((PLANTKIND)seedType);
+        plantSystem.StartPlanting((SPECIES)seedType);
         currentAction = ACTION.PLANTSEED;
     }
 
@@ -48,7 +48,7 @@ public class ActionSystem : MonoBehaviour
     {
         stopCurrentAction();
         currentAction = ACTION.PLANTINHAND;
-        CursorSystem.SetCursor(CURSORS.PLANT);
+        //CursorSystem.SetCursor(CURSORS.PLANT);
     }
 
     void stopCurrentAction()

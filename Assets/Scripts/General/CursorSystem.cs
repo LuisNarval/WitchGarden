@@ -10,7 +10,8 @@ public class CursorSystem : MonoBehaviour
 
     [Header("REFERENCE TO SCENE")]
     public GameObject cursor;
-    
+    public Image seedImage;
+
     [Header("REFERENCE TO PROYECT")]
     public Sprite[] allCursors;
 
@@ -24,11 +25,17 @@ public class CursorSystem : MonoBehaviour
     static CURSORS currentCursor;
 
     static bool specialCursor;
+    
+    public static SPECIES currentPlantSpecies;
+    public static Image staticSeedImage;
 
     // Start is called before the first frame update
     void Start()
     {
         specialCursor = false;
+        staticSeedImage = seedImage;
+        staticSeedImage.enabled = false;
+
         screenWidth = Screen.width;
         screenHeight = Screen.height;
 
@@ -84,6 +91,16 @@ public class CursorSystem : MonoBehaviour
         inAreaState = FarmSystem.isInFarmArea();
     }
 
+    public static void SetPlantCursor(Kind plantKind)
+    {
+        currentPlantSpecies = plantKind.species;
+        cursorArray[(int)CURSORS.PLANT] = plantKind.plantCursor;
+        SetCursor(CURSORS.PLANT);
+    }
+
+
+
+
     public static void ReleaseCursor()
     {
         changeImage((int)CURSORS.MANO);
@@ -95,6 +112,11 @@ public class CursorSystem : MonoBehaviour
     static void changeImage(CURSORS cursorType){
         cursorImage.sprite = cursorArray[(int)cursorType];
         cursorTrans.pivot = cursorImage.sprite.pivot / 128;
+
+        if (cursorType == CURSORS.SEMILLAS)
+            staticSeedImage.enabled = true;
+        else
+            staticSeedImage.enabled = false;
     }
 
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum PLANTKIND {BELLADONA,DRAGONMOUTH,LAVANDA,MANDRAGORA,ORKILLER,STRONIUM}
+
 public class PlantSystem : MonoBehaviour
 {
     [Header("REFERENCE TO PROYECT")]
@@ -13,7 +13,7 @@ public class PlantSystem : MonoBehaviour
     public Image[] blackImage;
 
     [Header("QUERY")]
-    public PLANTKIND currentKind;
+    public SPECIES currentSpecies;
 
     bool isPlanting = false;
 
@@ -27,13 +27,14 @@ public class PlantSystem : MonoBehaviour
         }
     }
 
-    public void StartPlanting(PLANTKIND newPlantKind){
+    public void StartPlanting(SPECIES newSpecies){
         isPlanting = true;
 
-        currentKind = newPlantKind;
+        currentSpecies = newSpecies;
         updateSeedsUI();
         
         CursorSystem.SetCursor(CURSORS.SEMILLAS);
+        CursorSystem.staticSeedImage.sprite = kinds[(int)newSpecies].plantCursor;
     }
 
     public void StopPlanting(){
@@ -44,7 +45,7 @@ public class PlantSystem : MonoBehaviour
     }
 
     void plant() {
-        FarmSystem.plantSeeds( kinds[(int)currentKind] );
+        FarmSystem.plantSeeds( kinds[(int)currentSpecies] );
         //StopPlanting();
     }
 
@@ -54,7 +55,7 @@ public class PlantSystem : MonoBehaviour
         for (int i = 0; i < blackImage.Length; i++)
             blackImage[i].enabled = true;
 
-        blackImage[(int)currentKind].enabled = false;
+        blackImage[(int)currentSpecies].enabled = false;
     }
 
     void releaseSeedsUI()
