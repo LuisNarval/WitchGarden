@@ -18,7 +18,7 @@ public class CutSystem : MonoBehaviour
     public void StartCutting()
     {
         isCutting = true;
-        CursorSystem.SetCursor(CURSORS.TIJERAS);
+        CursorSystem.SetCursor(CURSORS.SCISSORS);
     }
 
     public void StopCutting()

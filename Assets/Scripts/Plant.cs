@@ -101,6 +101,13 @@ public class Plant : MonoBehaviour
 
 
 
+    public void plow()
+    {
+        AudioSystem.playPlow();
+        updateState(STATE.PLOW);
+    }
+
+
     public void holeInLand()
     {
         AudioSystem.playDig();

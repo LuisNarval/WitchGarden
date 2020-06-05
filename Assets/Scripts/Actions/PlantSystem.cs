@@ -33,7 +33,7 @@ public class PlantSystem : MonoBehaviour
         currentSpecies = newSpecies;
         updateSeedsUI();
         
-        CursorSystem.SetCursor(CURSORS.SEMILLAS);
+        CursorSystem.SetCursor(CURSORS.SEEDS);
         CursorSystem.staticSeedImage.sprite = kinds[(int)newSpecies].plantCursor;
     }
 

@@ -9,6 +9,7 @@ public class AudioSystem : MonoBehaviour
     public AudioSource BGM_playTheme;
 
     [Header("SFX")]
+    public AudioSource SFX_Plow;
     public AudioSource SFX_Dig;
     public AudioSource SFX_Pour;
     public AudioSource SFX_Seeds;
@@ -20,6 +21,7 @@ public class AudioSystem : MonoBehaviour
     public AudioSource SFX_Cat;
     public AudioSource SFX_Owl;
 
+    static AudioSource staticSFX_Plow;
     static AudioSource staticSFX_Dig;
     static AudioSource staticSFX_Pour;
     static AudioSource staticSFX_Seeds;
@@ -33,6 +35,7 @@ public class AudioSystem : MonoBehaviour
 
     // Start is called before the first frame update
     void Start(){
+        staticSFX_Plow = SFX_Plow;
         staticSFX_Dig = SFX_Dig;
         staticSFX_Seeds = SFX_Seeds;
         staticSFX_Pour = SFX_Pour;
@@ -45,8 +48,10 @@ public class AudioSystem : MonoBehaviour
         staticSFX_Owl = SFX_Owl;
     }
 
- 
 
+    public static void playPlow(){
+        staticSFX_Plow.Play();
+    }
 
     public static void playDig(){
         staticSFX_Dig.Play();

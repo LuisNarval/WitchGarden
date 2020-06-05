@@ -13,9 +13,11 @@ public class FarmSystem : MonoBehaviour
     [Header("REFERENCE TO PROYECT")]
     public GameObject Plant;
     public ActionSystem actionSystem;
+    public PlowSystem plowSystem;
 
     static GameObject PlantPrefab;
     static ActionSystem staticActionSystem;
+    static PlowSystem staticPlowSystem;
     static int minAreaX;
     static int minAreaY;
     static int maxAreaX;
@@ -39,6 +41,7 @@ public class FarmSystem : MonoBehaviour
         maxAreaY = (int)maxActionArea.y;
         PlantPrefab = Plant;
         staticActionSystem = actionSystem;
+        staticPlowSystem = plowSystem;
     }
 
     void Start()
@@ -119,28 +122,32 @@ public class FarmSystem : MonoBehaviour
 
 
 
-
-
-
-    public static void makeAHole(Vector3 holePosition)
+    public static void plowGarden(Vector3 holePosition)
     {
-        
         if (isInFarmArea()){
-
-            if(GRID[coorX, coorY].state == STATE.EMPTY){
+            if (GRID[coorX, coorY].state == STATE.EMPTY){
                 GameObject instance = Instantiate(PlantPrefab, holePosition, Quaternion.identity) as GameObject;
                 instance.GetComponent<SpriteRenderer>().sortingOrder = 6 - coorY;
                 GRID[coorX, coorY].plant = instance.GetComponent<Plant>();
                 GRID[coorX, coorY].plant.setPosicion(coorX, coorY);
-                GRID[coorX, coorY].plant.holeInLand();
+                GRID[coorX, coorY].plant.plow();
+                staticPlowSystem.startRespawn();
             }else
                 GRID[coorX, coorY].plant.unSetOutline();
-
-            if (GRID[coorX, coorY].state == STATE.PLOW){
-                GRID[coorX, coorY].plant.holeInLand();
-            }
-
         }
+
+    }
+
+
+
+
+    public static void makeAHole()
+    {
+        if (isInFarmArea() && GRID[coorX, coorY].state != STATE.EMPTY)
+            GRID[coorX, coorY].plant.unSetOutline();
+
+        if (isInFarmArea() && GRID[coorX, coorY].state == STATE.PLOW)
+            GRID[coorX, coorY].plant.holeInLand();
     }
 
     public static void plantSeeds(Kind seedKind)

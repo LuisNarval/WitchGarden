@@ -18,7 +18,7 @@ public class PourSystem : MonoBehaviour
     public void StartPouring()
     {
         isPouring = true;
-        CursorSystem.SetCursor(CURSORS.REGADERA);
+        CursorSystem.SetCursor(CURSORS.SPRINKLER);
     }
 
     public void StopPouring()

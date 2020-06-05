@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public enum CURSORS { MANO, PALA, SEMILLAS, REGADERA, TIJERAS, PLANT }
+public enum CURSORS { HAND, RAKE, SHOVEL, SEEDS, SPRINKLER, SCISSORS, PLANT }
 public class CursorSystem : MonoBehaviour
 {
 
@@ -72,7 +72,7 @@ public class CursorSystem : MonoBehaviour
             if (inAreaState)
                 changeImage(currentCursor);
             else
-                changeImage(CURSORS.MANO);
+                changeImage(CURSORS.HAND);
 
 
             if(FarmSystem.isInDeliverArea()&&ActionSystem.currentAction==ACTION.PLANTINHAND)
@@ -103,9 +103,9 @@ public class CursorSystem : MonoBehaviour
 
     public static void ReleaseCursor()
     {
-        changeImage((int)CURSORS.MANO);
+        changeImage((int)CURSORS.HAND);
         specialCursor = false;
-        currentCursor = CURSORS.MANO;
+        currentCursor = CURSORS.HAND;
     }
 
 
@@ -113,7 +113,7 @@ public class CursorSystem : MonoBehaviour
         cursorImage.sprite = cursorArray[(int)cursorType];
         cursorTrans.pivot = cursorImage.sprite.pivot / 128;
 
-        if (cursorType == CURSORS.SEMILLAS)
+        if (cursorType == CURSORS.SEEDS)
             staticSeedImage.enabled = true;
         else
             staticSeedImage.enabled = false;

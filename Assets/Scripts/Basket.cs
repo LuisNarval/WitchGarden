@@ -75,7 +75,7 @@ public class Basket : MonoBehaviour
                 plants[plantActive].enabled = true;
                 plantActive++;
                 updateUI();
-                CursorSystem.SetCursor(CURSORS.MANO);
+                CursorSystem.SetCursor(CURSORS.HAND);
                 ActionSystem.setNoneAction();
                 AudioSystem.playBasket();
             }else{
