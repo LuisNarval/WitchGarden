@@ -1,96 +1,182 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Audio;
 public class AudioSystem : MonoBehaviour
 {
-    [Header("REFERENCE TO SCENE")]
-    [Header("BGM")]
-    public AudioSource BGM_playTheme;
+    [Header("CONFIG")]
+    public float fadeInTime;
+    public float fadeOutTime;
+    public float minDecibels;
 
+    [Header("REFERENCE TO SCENE")]
+    public AudioMixer audioMixer;
+
+    [Header("BGM")]
+    public AudioSource BGM_mainTheme;
+    public AudioSource BGM_dialogueTheme;
+
+    [Header("Gameplay")]
     [Header("SFX")]
     public AudioSource SFX_Plow;
     public AudioSource SFX_Dig;
     public AudioSource SFX_Pour;
     public AudioSource SFX_Seeds;
     public AudioSource SFX_Cut;
-    public AudioSource SFX_Coin;
-    public AudioSource SFX_Correct;
-    public AudioSource SFX_Basket;
     public AudioSource SFX_Grow;
     public AudioSource SFX_Cat;
     public AudioSource SFX_Owl;
+    public AudioSource SFX_Basket;
 
-    static AudioSource staticSFX_Plow;
-    static AudioSource staticSFX_Dig;
-    static AudioSource staticSFX_Pour;
-    static AudioSource staticSFX_Seeds;
-    static AudioSource staticSFX_Cut;
-    static AudioSource staticSFX_Coin;
-    static AudioSource staticSFX_Correct;
-    static AudioSource staticSFX_Basket;
-    static AudioSource staticSFX_Grow;
-    static AudioSource staticSFX_Cat;
-    static AudioSource staticSFX_Owl;
+    [Header("HUD")]
+    public AudioSource SFX_Bell1;
+    public AudioSource SFX_Bell2;
+    public AudioSource SFX_Coin;
+    public AudioSource SFX_Correct;
+    public AudioSource SFX_Wrong;
+    public AudioSource SFX_Ring;
+    public AudioSource SFX_TimeOut;
+
+    [Header("Screens")]
+    public AudioSource SFX_Star1;
+    public AudioSource SFX_Star2;
+    public AudioSource SFX_Star3;
+    public AudioSource SFX_WinFanfare;
+    public AudioSource SFX_FailureFanfare;
+
+    public static AudioSystem Instance {get; private set;}
 
     // Start is called before the first frame update
-    void Start(){
-        staticSFX_Plow = SFX_Plow;
-        staticSFX_Dig = SFX_Dig;
-        staticSFX_Seeds = SFX_Seeds;
-        staticSFX_Pour = SFX_Pour;
-        staticSFX_Cut = SFX_Cut;
-        staticSFX_Coin = SFX_Coin;
-        staticSFX_Correct = SFX_Correct;
-        staticSFX_Basket = SFX_Basket;
-        staticSFX_Grow = SFX_Grow;
-        staticSFX_Cat = SFX_Cat;
-        staticSFX_Owl = SFX_Owl;
+    private void Awake(){
+        if(Instance != null){
+            Instance.StopAllCoroutines();
+            Destroy(Instance);
+        }
+
+        Instance = this;
+        Instance.StopAllCoroutines();
     }
 
 
     public static void playPlow(){
-        staticSFX_Plow.Play();
+        Instance.SFX_Plow.Play();
     }
 
     public static void playDig(){
-        staticSFX_Dig.Play();
+        Instance.SFX_Dig.Play();
     }
 
     public static void playSeeds(){
-        staticSFX_Seeds.Play();
+        Instance.SFX_Seeds.Play();
     }
 
     public static void playPour(){
-        staticSFX_Pour.Play();
+        Instance.SFX_Pour.Play();
     }
 
     public static void playCut(){
-        staticSFX_Cut.Play();
+        Instance.SFX_Cut.Play();
     }
 
 
     public static void playCoin(){
-        staticSFX_Coin.Play();
+        Instance.SFX_Coin.Play();
     }
 
     public static void playGrow(){
-        staticSFX_Grow.Play();
+        Instance.SFX_Grow.Play();
     }
 
     public static void playCorrect(){
-        staticSFX_Correct.Play();
+        Instance.SFX_Correct.Play();
     }
 
     public static void playBasket(){
-        staticSFX_Basket.Play();
+        Instance.SFX_Basket.Play();
     }
 
     public static void playCat(){
-        staticSFX_Cat.Play();
+        Instance.SFX_Cat.Play();
     }
 
     public static void playOwl(){
-        staticSFX_Owl.Play();
+        Instance.SFX_Owl.Play();
     }
+
+
+    public static void playMainTheme(){
+        Instance.BGM_mainTheme.Play();
+    }
+
+    public static void playDialogueTheme(){
+        Instance.BGM_dialogueTheme.Play();
+    }
+
+
+
+    public void TurnOnAudio()
+    {
+        StopAllCoroutines();
+        StartCoroutine(coroutine_TurnOnAudio());
+    }
+    IEnumerator coroutine_TurnOnAudio()
+    {
+
+        float volume = minDecibels;
+
+        audioMixer.SetFloat("Volume", volume);
+
+        while (volume < 0){
+            volume += Time.deltaTime * Mathf.Abs(minDecibels) / fadeInTime;
+            audioMixer.SetFloat("Volume", volume);
+            yield return new WaitForEndOfFrame();
+        }
+
+        audioMixer.SetFloat("Volume", 0);
+        
+    }
+
+
+
+    public void TurnOffAudio()
+    {
+        StopAllCoroutines();
+        StartCoroutine(coroutine_TurnOffAudio());
+    }
+    IEnumerator coroutine_TurnOffAudio(){
+
+        float volume = 0;
+
+        audioMixer.SetFloat("Volume", volume);
+
+        while (volume > minDecibels)
+        {
+            volume -= Time.deltaTime * Mathf.Abs(minDecibels) / fadeOutTime;
+            audioMixer.SetFloat("Volume", volume);
+            yield return new WaitForEndOfFrame();
+        }
+
+        audioMixer.SetFloat("Volume", minDecibels);
+    }
+
+
+    public void fadeOutSong(AudioSource _song, float _time)
+    {
+        StartCoroutine(coroutineFadeOutSong(_song, _time));
+    }
+
+    IEnumerator coroutineFadeOutSong(AudioSource song, float time)
+    {
+        while (song.volume > 0){
+            song.volume -= Time.deltaTime/time;
+            yield return new WaitForEndOfFrame();
+        }
+
+        song.Stop();
+        song.volume = 1;
+    }
+
+
+
+
 }

@@ -44,8 +44,10 @@ public class Manager : MonoBehaviour
 
     IEnumerator coroutineStartDialogue()
     {
+        
         dialogueCanvas.enabled = true;
-        yield return new WaitForSeconds(1.5f /sceneSystem.enterSpeed);
+        yield return new WaitForSeconds(1.0f /sceneSystem.enterSpeed);
+        AudioSystem.playDialogueTheme();
         dialogueCanvas.enabled = true;
         animBackground.SetTrigger("enter");
         dialogueSystem.readDialogue(0);
@@ -64,6 +66,8 @@ public class Manager : MonoBehaviour
 
     IEnumerator coroutinePrepare()
     {
+
+        AudioSystem.Instance.fadeOutSong(AudioSystem.Instance.BGM_dialogueTheme, 2f);
         yield return new WaitForSeconds(1.0f);
         animBackground.SetTrigger("exit");
 
@@ -72,15 +76,22 @@ public class Manager : MonoBehaviour
 
         txtPrepare.text = "3";
         animPrepare.SetTrigger("bullet");
+        AudioSystem.Instance.SFX_Bell1.Play();
         yield return new WaitForSeconds(1.0f);
+
         txtPrepare.text = "2";
         animPrepare.SetTrigger("bullet");
+        AudioSystem.Instance.SFX_Bell1.Play();
         yield return new WaitForSeconds(1.0f);
+
         txtPrepare.text = "1";
         animPrepare.SetTrigger("bullet");
+        AudioSystem.Instance.SFX_Bell1.Play();
         yield return new WaitForSeconds(1.0f);
+
         txtPrepare.text = "COMIENZA !";
         animPrepare.SetTrigger("bullet");
+        AudioSystem.Instance.SFX_Bell2.Play();
         yield return new WaitForSeconds(0.5f);
         animPrepare.speed = 0;
         yield return new WaitForSeconds(0.5f);
@@ -98,6 +109,7 @@ public class Manager : MonoBehaviour
     {
         dialogueCanvas.enabled = false;
         orderSystem.sendOrders();
+        AudioSystem.playMainTheme();
         timeSystem.StartTime();
     }
 
@@ -133,6 +145,7 @@ public class Manager : MonoBehaviour
         timeSystem.StopTime();
         CursorSystem.ReleaseCursor();
         ActionSystem.setNoneAction();
+        
 
         isGameOver = true;
         dialogueCanvas.enabled = true;
@@ -143,8 +156,12 @@ public class Manager : MonoBehaviour
         prepareCanvas.enabled = true;
         animPrepare.enabled = true;
 
+        AudioSystem.Instance.fadeOutSong(AudioSystem.Instance.BGM_mainTheme, 3f);
+
         txtPrepare.text = message;
         animPrepare.SetTrigger("bullet");
+
+        AudioSystem.Instance.SFX_TimeOut.Play();
         yield return new WaitForSeconds(0.5f);
         animPrepare.speed = 0;
         yield return new WaitForSeconds(3.0f);
@@ -153,6 +170,9 @@ public class Manager : MonoBehaviour
 
         animPrepare.enabled = false;
         prepareCanvas.enabled = false;
+
+
+        AudioSystem.playDialogueTheme();
 
         if(isLevelPassed)
             dialogueSystem.readDialogue(1);
@@ -163,6 +183,8 @@ public class Manager : MonoBehaviour
 
 
     void showResults(){
+
+        AudioSystem.Instance.fadeOutSong(AudioSystem.Instance.BGM_dialogueTheme,2.0f);
 
         if (isLevelPassed){
             if (gameEndIfIsGoalAchived){

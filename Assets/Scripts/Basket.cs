@@ -76,7 +76,7 @@ public class Basket : MonoBehaviour
                 plantActive++;
                 updateUI();
                 CursorSystem.SetCursor(CURSORS.HAND);
-                ActionSystem.setNoneAction();
+                ActionSystem.Instance.CutAction();
                 AudioSystem.playBasket();
             }else{
                 StartCoroutine(coroutineWrongPlant());
@@ -112,7 +112,8 @@ public class Basket : MonoBehaviour
     IEnumerator coroutineWrongPlant(){
         imgFamiliar.material = wrongMaterial;
         basket.material = wrongMaterial;
-        yield return new WaitForSeconds(1.0f);
+        AudioSystem.Instance.SFX_Wrong.Play();
+        yield return new WaitForSeconds(0.5f);
         imgFamiliar.material = null;
         basket.material = null;
     }

@@ -7,6 +7,8 @@ public class PlowSystem : MonoBehaviour
 {
     [Header("CONFIG")]
     public float respawnTime;
+    public Color normalColor;
+    public Color respawnColor;
 
     [Header("REFERENCE TO SCENE")]
     public Transform vLine;
@@ -110,6 +112,9 @@ public class PlowSystem : MonoBehaviour
 
     IEnumerator coroutine_Respawn(){
         //rakeButton.interactable = false;
+
+        rakeButton.gameObject.GetComponent<Image>().color = respawnColor;
+        
         rakeFill.fillAmount = 0.0f;
 
         float time = 0.0f;
@@ -121,6 +126,8 @@ public class PlowSystem : MonoBehaviour
 
         rakeFill.fillAmount = 0;
         //rakeButton.interactable = true;
+        rakeButton.gameObject.GetComponent<Image>().color = normalColor;
+        AudioSystem.Instance.SFX_Ring.Play();
         isRespawning = false;
     }
 

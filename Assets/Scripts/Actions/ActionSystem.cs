@@ -13,8 +13,22 @@ public class ActionSystem : MonoBehaviour
 
     [Header("QUERY")]
     public static ACTION currentAction;
+    public static ActionSystem Instance { get; private set; }
 
-    
+    // Start is called before the first frame update
+    private void Awake()
+    {
+        if (Instance != null)
+            Destroy(Instance);
+        
+        Instance = this;
+    }
+
+
+
+
+
+
     public void PlowAction()
     {
         stopCurrentAction();

@@ -42,7 +42,7 @@ public class ResultSystem : MonoBehaviour
         animResult.enabled = false;
         resultCanvas.enabled = false;
 
-        buttonGroup.blocksRaycasts = true;
+        buttonGroup.blocksRaycasts = false;
         buttonGroup.alpha = 0.0f;
     }
 
@@ -69,7 +69,11 @@ public class ResultSystem : MonoBehaviour
         animResult.enabled = true;
         defeatImage.enabled = false;
 
-        yield return new WaitForSeconds(2.5f);
+        
+
+        yield return new WaitForSeconds(1.25f);
+        AudioSystem.Instance.SFX_WinFanfare.Play();
+        yield return new WaitForSeconds(1.25f);
 
         starsGroup.alpha = 1;
         starsGroup.blocksRaycasts = true;
@@ -109,7 +113,11 @@ public class ResultSystem : MonoBehaviour
         animResult.enabled = true;
         defeatImage.enabled = true;
 
-        yield return new WaitForSeconds(2.5f);
+        
+
+        yield return new WaitForSeconds(1.25f);
+        AudioSystem.Instance.SFX_FailureFanfare.Play();
+        yield return new WaitForSeconds(1.25f);
 
         while (buttonGroup.alpha < 1){
             buttonGroup.alpha += Time.deltaTime;
