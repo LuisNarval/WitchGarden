@@ -108,22 +108,19 @@ public class DialogueSystem : MonoBehaviour
 
         if(currentDialogue.dialogue[currentIntervention].charactherType == CHARACTERTYPE.WITCH){
 
-            if (isClientInScene){
-                animClient.SetTrigger("exit");
-                animClient.speed = 2.0f;
+            if (isGirlInScene || isClientInScene || isWitchInScene)
                 yield return StartCoroutine(coroutine_chatBoxOff());
-                isClientInScene = false;
-                animClient.speed = 1.0f;
+
+            
+            if (isClientInScene){
+                animClient.speed = 2.0f;
                 animWitch.speed = 2.0f;
+                animClient.SetTrigger("exit");
+                isClientInScene = false;
             }
 
-            if (isWitchInScene){
-                yield return StartCoroutine(coroutine_chatBoxOff());
-            }else{
 
-                //if (isGirlInScene)
-                    //yield return StartCoroutine(coroutine_chatBoxOff());
-
+            if (!isWitchInScene){
                 animWitch.SetTrigger("enter");
                 yield return new WaitForSeconds(1/animWitch.speed);
                 isWitchInScene = true;
@@ -131,31 +128,35 @@ public class DialogueSystem : MonoBehaviour
 
             yield return StartCoroutine(coroutine_chatBoxOn(witchTextColor, imgLeftBox));
 
+            animClient.speed = 1.0f;
+            animWitch.speed = 1.0f;
+
         }
         else if(currentDialogue.dialogue[currentIntervention].charactherType == CHARACTERTYPE.CLIENT){
 
-            if (isWitchInScene){
-                animWitch.SetTrigger("exit");
-                animWitch.speed = 2.0f;
+            if (isGirlInScene || isClientInScene || isWitchInScene)
                 yield return StartCoroutine(coroutine_chatBoxOff());
-                isWitchInScene = false;
-                animWitch.speed = 1.0f;
+
+            
+            if (isWitchInScene){
                 animClient.speed = 2.0f;
+                animWitch.speed = 2.0f;
+                animWitch.SetTrigger("exit");
+                isWitchInScene = false;
             }
 
-            if (isClientInScene){
-                yield return StartCoroutine(coroutine_chatBoxOff());
-            }else{
-
-                //if(isGirlInScene&&!isWitchInScene)
-                    //yield return StartCoroutine(coroutine_chatBoxOff());
-
+            
+            if (!isClientInScene){
                 animClient.SetTrigger("enter");
                 yield return new WaitForSeconds(1/animClient.speed);
                 isClientInScene = true;
             }
 
+
             yield return StartCoroutine(coroutine_chatBoxOn(clientTextColor, imgLeftBox));
+
+            animClient.speed = 1.0f;
+            animWitch.speed = 1.0f;
         }
 
         canNext = true;

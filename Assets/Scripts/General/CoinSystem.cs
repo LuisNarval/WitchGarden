@@ -11,6 +11,7 @@ public class CoinSystem : MonoBehaviour
     public Transform arrowTrans;
     public Image fillImage;
     public TextMeshProUGUI txtCoinCount;
+    public TextMeshProUGUI txtCoinGoal;
 
     [Header("QUERY")]
     public int currentCoins;
@@ -21,6 +22,7 @@ public class CoinSystem : MonoBehaviour
     {
         goalFinished = false;
         coinsGoal = manager.Goal;
+        txtCoinGoal.text = "/" + coinsGoal;
         initCount();   
     }
 
