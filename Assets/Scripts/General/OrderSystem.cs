@@ -11,6 +11,7 @@ public class OrderSystem : MonoBehaviour
     public int maxSimultaneousOrders;
     public int minTimeBetweenOrders;
     public int maxTimeBetweenOrders;
+    public int minPlantPerBasket;
     public int maxPlantPerBasket;
 
     [Header("Species to Use")]
@@ -102,18 +103,24 @@ public class OrderSystem : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(minTimeBetweenOrders,maxTimeBetweenOrders));
         }
 
-        storeAllOrders();
+    }
+    
+    public void endGame(){
+        StopAllCoroutines();
+        for (int i = 0; i < orders.Length; i++){
+            if (orders[i].wasSend)
+                orders[i].basket.endGame();
+        }
     }
 
-
-    public void storeAllOrders()
+    /*public void storeAllOrders()
     {
         StopAllCoroutines();
         for (int i = 0; i < orders.Length; i++){
             if (orders[i].wasSend)
                 orders[i].basket.fullBasket();
         }
-    }
+    }*/
 
 
 
@@ -142,7 +149,7 @@ public class OrderSystem : MonoBehaviour
 
         randomKind = (int)Random.Range(0.0f, kindList.Count);
 
-        orders[randomBasket].basket.sendBasket(maxPlantPerBasket, randomSlot, randomBasket, kindList[randomKind]);
+        orders[randomBasket].basket.sendBasket(minPlantPerBasket,maxPlantPerBasket, randomSlot, randomBasket, kindList[randomKind]);
     }
 
 

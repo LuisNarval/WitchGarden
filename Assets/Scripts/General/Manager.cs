@@ -118,7 +118,7 @@ public class Manager : MonoBehaviour
     public void timesUp()
     {
         StopAllCoroutines();
-        orderSystem.storeAllOrders();
+        orderSystem.endGame();
         StartCoroutine(coroutineshowEndResult("TIEMPO TERMINADO!"));
     }
 
@@ -128,7 +128,7 @@ public class Manager : MonoBehaviour
         isLevelPassed = true;
         
         if (gameEndIfIsGoalAchived){
-            orderSystem.storeAllOrders();
+            orderSystem.endGame();
             StopAllCoroutines();
             StartCoroutine(coroutineshowEndResult("META LOGRADA!"));
         }

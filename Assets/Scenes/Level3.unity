@@ -2666,7 +2666,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1072066223}
+  - {fileID: 1261860703}
   m_Father: {fileID: 836679371}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2773,15 +2773,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 334027523}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1699008969}
   - {fileID: 1171667225}
   - {fileID: 646671998}
-  m_Father: {fileID: 394680876}
-  m_RootOrder: 8
+  m_Father: {fileID: 1122694565}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &334027525
 MonoBehaviour:
@@ -3070,7 +3070,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 99f4fe19a8acd7041b7a95f9ffe7aceb, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.8
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3568,12 +3568,10 @@ Transform:
   - {fileID: 1866044539}
   - {fileID: 696643668}
   - {fileID: 1452323451}
-  - {fileID: 2119795442}
   - {fileID: 1684521640}
   - {fileID: 747333870}
-  - {fileID: 334027524}
   m_Father: {fileID: 1122694565}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &397225856
 GameObject:
@@ -3678,7 +3676,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &398469180
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3699,7 +3697,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -3.0002441, y: 91}
+  m_AnchoredPosition: {x: -3.0002441, y: -37.6}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &398469181
@@ -3902,7 +3900,7 @@ Transform:
   m_Children:
   - {fileID: 1098049064}
   m_Father: {fileID: 1122694565}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &411847220
 MonoBehaviour:
@@ -3916,7 +3914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53644813819a37b468e85f589621a3cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: Level2
+  nextSceneName: Title
   enterSpeed: 0.5
   exitSpeed: 1
   imgCurtain: {fileID: 1651169866}
@@ -6548,7 +6546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   testMode: 0
   Seconds: 300
-  Goal: 15
+  Goal: 25
   gameEndIfIsGoalAchived: 1
   sceneSystem: {fileID: 411847220}
   orderSystem: {fileID: 2119795443}
@@ -7005,7 +7003,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -3.0002441, y: 220}
+  m_AnchoredPosition: {x: -3.0002441, y: 219.4}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &625762591
@@ -7117,7 +7115,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &629308957
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7138,7 +7136,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -3.0002441, y: -36}
+  m_AnchoredPosition: {x: -3.0002441, y: 91}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &629308958
@@ -7716,15 +7714,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - name: Witch
-    charactherType: 1
-    sentence:
-    - Creo que me equivoque contigo.
-    - Es evidente que no tienes las capacidades para este trabajo.
   - name: Girl
     charactherType: 0
     sentence:
-    - Por favor deme otra oportunidad.
+    - Ahhhh, lo siento mucho.
+  - name: Sabrina
+    charactherType: 2
+    sentence:
+    - "No te preocupes.\t"
+    - "Lo har\xE1s mejor la pr\xF3xima vez."
 --- !u!1 &662973611
 GameObject:
   m_ObjectHideFlags: 0
@@ -9162,7 +9160,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 3729b51c8edd5424c9859295daae3f84,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: d2fa575b721fd474b915a731e4c50535, type: 3}
+  m_audioClip: {fileID: 8300000, guid: fc6edd29071848149b38658ab1f9d9a2, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.7
   m_Pitch: 1
@@ -9356,7 +9354,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 394680876}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &747333871
 MonoBehaviour:
@@ -10368,7 +10366,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: ec1afe9aac733d544925ca49a49b273d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.8
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -12540,80 +12538,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1057433407}
   m_CullTransparentMesh: 0
---- !u!1 &1072066222
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1072066223}
-  - component: {fileID: 1072066225}
-  - component: {fileID: 1072066224}
-  m_Layer: 5
-  m_Name: Client
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1072066223
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1072066222}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 298134806}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 242, y: 485.1}
-  m_SizeDelta: {x: 820.4477, y: 1069.8453}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1072066224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1072066222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3886653ed6479454fa000b3ce9cb2779, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1072066225
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1072066222}
-  m_CullTransparentMesh: 0
 --- !u!1 &1081344978
 GameObject:
   m_ObjectHideFlags: 0
@@ -13230,6 +13154,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 599737449}
+  - {fileID: 2119795442}
+  - {fileID: 334027524}
   - {fileID: 411847219}
   - {fileID: 394680876}
   - {fileID: 1944876595}
@@ -13490,25 +13416,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - name: Witch
-    charactherType: 1
+  - name: Sabrina
+    charactherType: 2
     sentence:
-    - "Vaya, as\xED que lograste la meta."
-    - "Tienes m\xE1s talento del que esperaba."
+    - "No puedo creer que hayas preparado la orden tan r\xE1pido."
+    - La vieja Morgane tardaba siglos en armar una sola orden.
+    - Que bueno que has venido a ayudarla.
   - name: Girl
     charactherType: 0
     sentence:
-    - Gracias Madam.
-  - name: Witch
+    - "Muchas gracias se\xF1orita."
+  - name: Sabrina
+    charactherType: 2
+    sentence:
+    - No es necesario ser tan formal.
+    - Mis amigos me dicen Bri. . .
+  - name: Bruja
     charactherType: 1
     sentence:
-    - "Si contin\xFAas as\xED, puede que llegue el d\xEDa en que me ayudes a preparar
-      la posi\xF3n que recuperara mi belleza."
-    - "Si eso llega a pasar te graduar\xE9 como Bruja."
-  - name: Girl
-    charactherType: 0
+    - Vaya, pero si la solterona de Hilda mando a su mocosa.
+    - "\xBFYa te atendier\xF3n ni\xF1a?"
+  - name: Sabrina
+    charactherType: 2
     sentence:
-    - "\xA1Cu\xE9nte conmigo!"
+    - "As\xED es, debo decirle que su asistente hizo un gran trabajo."
 --- !u!1 &1172147536
 GameObject:
   m_ObjectHideFlags: 0
@@ -14369,6 +14300,80 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1255439254}
   m_CullTransparentMesh: 0
+--- !u!1 &1261860702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1261860703}
+  - component: {fileID: 1261860705}
+  - component: {fileID: 1261860704}
+  m_Layer: 5
+  m_Name: Client
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1261860703
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261860702}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 298134806}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 99.3, y: 295.9}
+  m_SizeDelta: {x: 360.38712, y: 716.2505}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1261860704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261860702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 4e1a52c9e407aef4cab6f8465e2546fe, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1261860705
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261860702}
+  m_CullTransparentMesh: 0
 --- !u!1 &1273017178
 GameObject:
   m_ObjectHideFlags: 0
@@ -14444,7 +14449,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -3.0002441, y: 350}
+  m_AnchoredPosition: {x: -3.0002441, y: 348}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1291123192
@@ -15882,7 +15887,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 4e4aabb0b38330943b125a7d12f8d887, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.8
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -18156,7 +18161,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -62.000244, y: 140.06766}
+  m_AnchoredPosition: {x: -34, y: 79}
   m_SizeDelta: {x: 565.45764, y: 899.01404}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1676590566
@@ -18225,7 +18230,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 394680876}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1684521641
 MonoBehaviour:
@@ -18400,37 +18405,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - name: Witch
-    charactherType: 1
+  - name: Sabrina
+    charactherType: 2
     sentence:
-    - "Espero que estes consciente de lo que deseas ni\xF1a."
-    - "Si realmente te quieres convertir en una gran bruja primero tendr\xE1s que
-      aprender como cosechar nuestro poder."
+    - "Qu\xE9 tal."
+    - "\xBFLa vieja bruja se encuentra en casa?"
   - name: Girl
     charactherType: 0
     sentence:
-    - Le agradezco mucho por la oportunidad Madam.
-  - name: Witch
-    charactherType: 1
+    - Madam Morgane no se encuentra por el momento.
+    - "Pero yo soy su nueva asistente, \xBFen qu\xE9 puedo ayudarte?"
+  - name: Sabrina
+    charactherType: 2
     sentence:
-    - "A\xFAn no me agradezcas."
-    - "Mi tienda es visitada por los hechiceros y las brujas m\xE1s poderosas de
-      estas tierras.\n"
-    - No pienso quedar en ridiculo ante ninguno de ellos.
-    - Primero necesito ver de lo que eres capaz.
+    - "Eres demasiado linda c\xF3mo para trabajar para ella."
+    - "Mi tia llam\xF3 esta ma\xF1ana para hacer un pedido."
+    - "Boca de Drag\xF3n, Orkiller, Stronium y Lavanda,"
   - name: Girl
     charactherType: 0
     sentence:
-    - No la defraudare Madam.
-  - name: Witch
-    charactherType: 1
-    sentence:
-    - "La prueba consistir\xE1 en cosechar Orkiller y Lavanda."
-    - Tienes 5 minutos para entregarme 15 de estas plantas.
-  - name: Girl
-    charactherType: 0
-    sentence:
-    - "S\xED se\xF1ora."
+    - Madam Morgane no me dijo nada.
+    - "Pero no te preocupes, tendr\xE1s tus plantas en un momento."
 --- !u!1 &1721176276
 GameObject:
   m_ObjectHideFlags: 0
@@ -19888,7 +19883,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -3.0002441, y: -168}
+  m_AnchoredPosition: {x: -3.0002441, y: 79}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1857993657
@@ -21373,7 +21368,7 @@ Transform:
   - {fileID: 54307391}
   - {fileID: 737181765}
   m_Father: {fileID: 1122694565}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1952891442
 GameObject:
@@ -21825,7 +21820,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: e2718d16fff86bd4cb44960eab4ab8ec, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.8
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -23014,7 +23009,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 1409537128b6e2a4f9a29d0b9fab9cf8, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.8
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -23472,12 +23467,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2119795441}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 394680876}
-  m_RootOrder: 5
+  m_Father: {fileID: 1122694565}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2119795443
 MonoBehaviour:
@@ -23491,17 +23486,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6678e14b699cbb74ab78d6832e51bb75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSimultaneousOrders: 2
-  minTimeBetweenOrders: 15
-  maxTimeBetweenOrders: 25
-  minPlantPerBasket: 2
+  maxSimultaneousOrders: 4
+  minTimeBetweenOrders: 8
+  maxTimeBetweenOrders: 15
+  minPlantPerBasket: 1
   maxPlantPerBasket: 3
   Belladona: 0
-  DragonMouth: 0
+  DragonMouth: 1
   Lavanda: 1
   Mandragora: 0
   Orkiller: 1
-  Stronium: 0
+  Stronium: 1
   baskets:
   - {fileID: 1592483326}
   - {fileID: 1430243470}

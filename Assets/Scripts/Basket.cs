@@ -9,6 +9,7 @@ public class Basket : MonoBehaviour
 {
     [Header("CONFIG")]
     public int maxPlantNumber;
+    public int minPlantNumber;
     public CoinSystem coinSystem;
     public FAMILIAR familiar;
 
@@ -33,8 +34,9 @@ public class Basket : MonoBehaviour
     int currentBasket;
     Kind currentKind;
 
-    public void sendBasket(int maxPlant, int slot, int basket, Kind newkind)
+    public void sendBasket(int minPlant,int maxPlant, int slot, int basket, Kind newkind)
     {
+        minPlantNumber = minPlant;
         maxPlantNumber = maxPlant;
         currentSlot = slot;
         currentBasket = basket;
@@ -46,7 +48,7 @@ public class Basket : MonoBehaviour
 
     void initBasket()
     {
-        plantNumber = (int)Random.Range(1, maxPlantNumber);
+        plantNumber = (int)Random.Range(minPlantNumber, maxPlantNumber+1);
         for (int i = 0; i < plants.Length; i++){
             plants[i].sprite = currentKind.plantCursor;
             plants[i].enabled = false;
@@ -99,6 +101,14 @@ public class Basket : MonoBehaviour
         coinSystem.addCoins(plantActive);
         AudioSystem.playCorrect();
         Invoke("informOrderSystem", 1f);
+    }
+
+    public void endGame()
+    {
+        button.interactable = false;
+        palomita.enabled = false;
+        txtPlantNumber.enabled = false;
+        animator.SetTrigger("exit");
     }
 
 

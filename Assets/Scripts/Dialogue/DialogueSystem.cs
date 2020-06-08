@@ -120,6 +120,10 @@ public class DialogueSystem : MonoBehaviour
             if (isWitchInScene){
                 yield return StartCoroutine(coroutine_chatBoxOff());
             }else{
+
+                //if (isGirlInScene)
+                    //yield return StartCoroutine(coroutine_chatBoxOff());
+
                 animWitch.SetTrigger("enter");
                 yield return new WaitForSeconds(1/animWitch.speed);
                 isWitchInScene = true;
@@ -142,6 +146,10 @@ public class DialogueSystem : MonoBehaviour
             if (isClientInScene){
                 yield return StartCoroutine(coroutine_chatBoxOff());
             }else{
+
+                //if(isGirlInScene&&!isWitchInScene)
+                    //yield return StartCoroutine(coroutine_chatBoxOff());
+
                 animClient.SetTrigger("enter");
                 yield return new WaitForSeconds(1/animClient.speed);
                 isClientInScene = true;
